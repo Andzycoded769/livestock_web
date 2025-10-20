@@ -151,17 +151,18 @@
 </header>
 
 <!-- Cart Wrapper -->
-<div class="cart-container top-right">
-  <!-- Cart Icon -->
-  <div class="cart-icon" onclick="toggleCart()">
-    🛒 Cart (<span id="cart-count">0</span>)
-  </div>
-
-  <!-- Cart Dropdown -->
-  <div id="cart-dropdown" class="cart-dropdown">
+ <div class="cart-icon">
+        <a href="javascript:void(0)" onclick="toggleCart()">
+          <span id="cart-count">0</span>
+          <i class="fas fa-shopping-cart"></i>
+        </a>
+         <div id="cart-dropdown" class="cart-dropdown">
     <div id="cart-items"></div>
     <a href="payment.html" class="payment-btn">Proceed to Payment</a>
   </div>
+      </div>
+  <!-- Cart Dropdown -->
+ 
 </div>
 
 
