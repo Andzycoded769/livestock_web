@@ -1,0 +1,600 @@
+html {
+  scroll-behavior: smooth;
+}
+
+
+
+body {
+  margin: 0;
+  padding: 0;
+  font-family: 'Poppins', sans-serif;
+  background: url("images/background.jpg") no-repeat center center fixed;
+  background-size: cover;
+  color: #333;
+}
+
+.logo i {
+  margin-right: 8px;
+  color: #fff;
+}
+
+main {
+  margin-top: 80px; /* Adjust depending on your header height */
+}
+
+
+/* Header and navigation bar */
+header {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  z-index: 1000;
+  background: rgba(0, 0, 0, 0.5); /* or any background you like */
+  color: #fff;
+  padding: 10px 20px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.4);
+  backdrop-filter: blur(6px); /* Optional for glassy look */
+}
+
+
+header h1 {
+  margin: 0;
+  font-size: 2.2rem;
+  font-weight: 600;
+}
+
+nav {
+  margin-top: 10px;
+}
+
+nav a {
+  margin: 0 15px;
+  text-decoration: none;
+  color: white;
+  font-weight: bold;
+}
+
+nav a:hover {
+  text-decoration: underline;
+}
+
+/* Hero section */
+.hero {
+  text-align: center;
+  padding: 40px 20px;
+  background: transparent; /* or remove the background line entirely */
+}
+
+
+.hero h2 {
+  font-size: 2rem;
+  color: #2e7d32;
+  margin-bottom: 10px;
+}
+
+.hero p {
+  font-size: 1.1rem;
+  max-width: 600px;
+  margin: 0 auto 20px;
+  font-weight: 400;
+}
+
+.hero img {
+  width: 90%;
+  max-width: 400px;
+  border-radius: 12px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.15);
+}
+
+/* Footer */
+footer {
+  background-color: #2e7d32;
+  color: white;
+  text-align: center;
+  padding: 15px 0;
+  margin-top: 40px;
+  font-size: 0.9rem;
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+  header h1 {
+    font-size: 1.5rem;
+  }
+
+  nav {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    margin-top: 15px;
+  }
+
+  nav a {
+    display: inline-block;
+    padding: 10px;
+    font-size: 1rem;
+  }
+
+  .hero h2 {
+    font-size: 1.5rem;
+  }
+
+  .hero p {
+    font-size: 1rem;
+    padding: 0 10px;
+  }
+
+  .hero img {
+    width: 100%;
+    max-width: 100%;
+    border-radius: 10px;
+  }
+
+  footer {
+    font-size: 0.8rem;
+    padding: 10px 5px;
+  }
+}
+
+/* Product Cards Layout */
+.products-container {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 30px;
+  padding: 20px;
+}
+
+.product-card {
+  background-color: #fff;
+  border: 1px solid #ddd;
+  border-radius: 12px;
+  box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+  padding: 15px;
+  max-width: 250px;
+  text-align: center;
+  transition: transform 0.3s ease;
+}
+
+.product-card img {
+  width: 100%;
+  height: auto;
+  max-height: 220px; /* optional: limit height to keep card sizes consistent */
+  object-fit: contain; /* ensures the full image fits inside the box */
+  border-radius: 8px;
+  background-color: #fdfdfd; /* optional: fills any gaps if the image is smaller */
+}
+
+
+.product-card h3 {
+  color: #2e7d32;
+  margin: 10px 0 5px;
+}
+
+.product-card p {
+  font-size: 0.95rem;
+  margin: 5px 0;
+}
+
+.product-card:hover {
+  transform: translateY(-5px);
+}
+
+/* Contact Page */
+.contact-details {
+  padding: 30px 20px;
+  max-width: 600px;
+  margin: 0 auto;
+  background-color: #ffffff;
+  border-radius: 10px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+  line-height: 1.6;
+}
+
+.contact-details h3 {
+  margin-top: 20px;
+  color: #2e7d32;
+}
+
+.contact-details a {
+  color: #1b5e20;
+  text-decoration: none;
+  font-weight: bold;
+}
+
+.contact-details a:hover {
+  text-decoration: underline;
+}
+
+/* Contact Form */
+.contact-form {
+  margin-top: 20px;
+  display: flex;
+  flex-direction: column;
+}
+
+.contact-form label {
+  margin-bottom: 5px;
+  font-weight: 600;
+  color: #2e7d32;
+}
+
+.contact-form input,
+.contact-form textarea {
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  margin-bottom: 15px;
+  font-size: 1rem;
+  resize: vertical;
+}
+
+.contact-form button {
+  padding: 12px;
+  background-color: #2e7d32;
+  color: white;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  font-size: 1rem;
+  transition: background 0.3s ease;
+}
+
+.contact-form button:hover {
+  background-color: #1b5e20;
+}
+
+
+.overlay {
+  background-color: rgba(255, 255, 255, 0.9); /* white transparent layer */
+  min-height: 100vh;
+  padding: 0;
+}
+
+/* Welcome Section */
+.welcome {
+  text-align: center;
+  padding: 40px 20px;
+}
+
+/* Features Section */
+.features {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 20px;
+  padding: 20px;
+}
+
+.feature-card {
+  background: rgba(255, 255, 255, 0.8);
+  padding: 20px;
+  border-radius: 12px;
+  width: 220px;
+  text-align: center;
+  font-size: 1rem;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+}
+
+
+/* Call to Action */
+.cta {
+  text-align: center;
+  padding: 40px 20px;
+  background-color: rgba(255, 255, 255, 0.85);
+}
+
+.cta-button {
+  background-color: #1b5e20;
+  color: white;
+  padding: 12px 25px;
+  text-decoration: none;
+  border-radius: 8px;
+  font-weight: bold;
+  display: inline-block;
+  margin-top: 15px;
+  transition: background 0.3s ease;
+}
+
+.cta-button:hover {
+  background-color: #145a18;
+}
+
+/* Testimonials */
+.testimonials {
+  padding: 40px 20px;
+  background-color: rgba(255, 255, 255, 0.9);
+  text-align: center;
+}
+
+.testimonial-boxes {
+  display: flex;
+  gap: 20px;
+  flex-wrap: wrap;
+  justify-content: center;
+  margin-top: 20px;
+}
+
+.testimonial {
+  background-color: #f1f8e9;
+  border-left: 5px solid #2e7d32;
+  padding: 20px;
+  max-width: 300px;
+  border-radius: 10px;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+}
+
+.testimonial p {
+  font-style: italic;
+}
+
+.testimonial h4 {
+  margin-top: 10px;
+  font-weight: 600;
+  color: #1b5e20;
+}
+
+/* Newsletter Signup */
+.newsletter {
+  padding: 40px 20px;
+  text-align: center;
+  background-color: rgba(255, 255, 255, 0.95);
+}
+
+.newsletter-form {
+  margin-top: 15px;
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+
+.newsletter-form input[type="email"] {
+  padding: 10px;
+  width: 250px;
+  border-radius: 6px;
+  border: 1px solid #ccc;
+  font-size: 1rem;
+}
+
+.newsletter-form button {
+  padding: 10px 20px;
+  background-color: #2e7d32;
+  color: white;
+  border: none;
+  border-radius: 6px;
+  font-weight: bold;
+  cursor: pointer;
+  transition: background 0.3s;
+}
+
+.newsletter-form button:hover {
+  background-color: #1b5e20;
+}
+
+/* Slider Outer Section */
+.slider-section {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  padding: 40px 0;
+  background: transparent;
+}
+
+/* Viewport for 1 card */
+.slider-container {
+  width: 100%;
+  max-width: 420px;
+  overflow: hidden;
+  position: relative;
+}
+
+/* Slide track holding all cards */
+.card-slide {
+  display: flex;
+  animation: slideCardsOneByOne 15s ease-in-out infinite;
+}
+
+/* Each card fills the viewport exactly */
+.card {
+  flex: 0 0 100%;
+  max-width: 100%;
+  background-color: white;
+  border-radius: 12px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.15);
+  padding: 20px;
+  text-align: center;
+  box-sizing: border-box;
+}
+
+.card img {
+  width: 100%;
+  height: 200px;
+  object-fit: cover;
+  border-radius: 8px;
+}
+
+/* Slide animation */
+@keyframes slideCardsOneByOne {
+  0%   { transform: translateX(0%); }
+  20%  { transform: translateX(0%); }
+
+  25%  { transform: translateX(-100%); }
+  45%  { transform: translateX(-100%); }
+
+  50%  { transform: translateX(-200%); }
+  70%  { transform: translateX(-200%); }
+
+  75%  { transform: translateX(0%); }
+  100% { transform: translateX(0%); }
+}
+
+/* Navbar Styling */
+header {
+  width: 100%;
+  background-color: #2e7d32;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+
+.navbar {
+  max-width: 1100px;
+  margin: auto;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 16px 20px;
+  color: white;
+}
+
+.logo {
+  font-size: 1.1rem;
+  font-weight: bold;
+  font-family: 'Segoe UI', sans-serif;
+}
+
+.nav-links {
+  list-style: none;
+  display: flex;
+  gap: 30px;
+}
+
+.nav-links li a {
+  color: white;
+  text-decoration: none;
+  font-weight: 500;
+  transition: color 0.3s ease;
+}
+
+.nav-links li a:hover {
+  color: #d4ffcf;
+}
+
+/* About Page Layout */
+.about-container {
+  max-width: 1000px;
+  margin: auto;
+  padding: 40px 20px;
+  color: #333;
+  font-family: 'Segoe UI', sans-serif;
+}
+
+.about-container section {
+  margin-bottom: 40px;
+}
+
+.about-intro img {
+  width: 100%;
+  max-height: 300px;
+  object-fit: cover;
+  border-radius: 8px;
+  margin-top: 20px;
+}
+
+.about-why ul {
+  padding-left: 20px;
+}
+
+.about-why ul li {
+  margin-bottom: 8px;
+}
+
+.search-section {
+  text-align: center;
+  margin: 2rem auto;
+}
+
+#productSearch {
+  width: 80%;
+  max-width: 400px;
+  padding: 10px 15px;
+  font-size: 1rem;
+  border-radius: 5px;
+  border: 1px solid #ccc;
+}
+
+.search-wrapper {
+  position: relative;
+  width: 80%;
+  max-width: 400px;
+  margin: 0 auto;
+}
+
+.search-icon {
+  position: absolute;
+  top: 50%;
+  left: 12px;
+  transform: translateY(-50%);
+  font-size: 1.2rem;
+  color: #777;
+  pointer-events: none;
+}
+
+#productSearch {
+  width: 100%;
+  padding: 10px 15px 10px 35px; /* left padding for icon */
+  font-size: 1rem;
+  border-radius: 5px;
+  border: 1px solid #ccc;
+}
+
+/* Navbar base */
+.navbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 15px 20px;
+  background: #2e7d32;
+  color: white;
+}
+
+nav {
+  display: flex;
+  gap: 20px;
+}
+
+nav a {
+  color: white;
+  text-decoration: none;
+  font-weight: 500;
+}
+
+nav a:hover {
+  color: #d4ffcf;
+}
+
+/* Hamburger button (hidden on desktop) */
+.menu-toggle {
+  display: none;
+  font-size: 1.8rem;
+  cursor: pointer;
+}
+
+/* Responsive styles */
+@media (max-width: 768px) {
+  nav {
+    display: none;
+    flex-direction: column;
+    background: #2e7d32;
+    position: absolute;
+    top: 60px;
+    right: 20px;
+    padding: 15px;
+    border-radius: 8px;
+  }
+
+  nav.active {
+    display: flex;
+  }
+
+  .menu-toggle {
+    display: block;
+  }
+}
+
+/* Slider fix: show image fully */
+.slider-section img {
+  width: 100%;
+  height: auto;   /* keeps full image visible */
+  object-fit: contain; /* no cutting */
+}

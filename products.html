@@ -1,0 +1,520 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>🐔 Products</title>
+  <link rel="icon" type="image/jpeg" href="images/chicken-icon-1.png" />
+  <link rel="stylesheet" href="style.css" />
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet" />
+  <script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
+
+  <!-- Font Awesome -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+  <style>
+    .cart-icon {
+      position: fixed;
+      top: 20px;
+      right: 20px;
+      background: white;
+      border: 2px solid #ccc;
+      border-radius: 8px;
+      padding: 10px;
+      z-index: 1000;
+      cursor: pointer;
+    }
+
+    .cart-dropdown {
+      display: none;
+      position: fixed;
+      top: 70px;
+      right: 20px;
+      background: white;
+      border: 1px solid #ccc;
+      border-radius: 8px;
+      width: 300px;
+      padding: 10px;
+      z-index: 1000;
+    }
+
+    .cart-dropdown.show {
+      display: block;
+    }
+
+    .cart-item {
+      display: flex;
+      justify-content: space-between;
+      margin-bottom: 8px;
+      border-bottom: 1px solid #ddd;
+      padding-bottom: 4px;
+    }
+
+    .cart-item button {
+      background: red;
+      color: white;
+      border: none;
+      padding: 2px 6px;
+      border-radius: 4px;
+      cursor: pointer;
+      .cart-item button {
+  margin-left: 4px;
+  padding: 2px 6px;
+  background: #007bff;
+  color: white;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 14px;
+}
+.cart-item button:nth-child(3) {
+  background: red;
+}
+
+    }
+
+    .payment-btn {
+      display: block;
+      margin-top: 10px;
+      width: 100%;
+      padding: 8px;
+      background: green;
+      color: white;
+      text-align: center;
+      text-decoration: none;
+      border-radius: 6px;
+      font-weight: bold;
+    }
+
+    .add-to-cart-btn {
+      margin-top: 8px;
+      background: #007bff;
+      color: white;
+      border: none;
+      padding: 6px 12px;
+      border-radius: 5px;
+      cursor: pointer;
+    }
+.cart-container {
+  top: 50%;
+  right: 20px;
+  transform: translateY(-50%);
+}
+
+
+/* Cart icon itself */
+.cart-icon {
+  background: white;
+  border: 2px solid #ccc;
+  border-radius: 8px;
+  padding: 10px;
+  cursor: pointer;
+}
+
+/* Dropdown follows container */
+.cart-dropdown {
+  display: none;
+  position: absolute; /* relative to container */
+  top: 60px; /* space below cart icon */
+  right: 0;
+  background: white;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  width: 300px;
+  padding: 10px;
+}
+.cart-dropdown.show {
+  display: block;
+}
+
+    
+  </style>
+</head>
+<body>
+
+<header>
+  <div class="navbar">
+    <h1 class="logo">🐔 J.N L.F LTD.</h1>
+
+    <!-- Hamburger button -->
+    <div class="menu-toggle" id="menu-toggle">
+      <i class="fas fa-bars"></i>
+    </div>
+
+    <!-- Nav Links -->
+    <nav id="nav-links">
+      <a href="index.html">Home</a>
+      <a href="about.html">About</a>
+      <a href="products.html">Products</a>
+      <a href="contact.html">Contact</a>
+    </nav>
+  </div>
+</header>
+
+<!-- Cart Wrapper -->
+<div class="cart-container top-right">
+  <!-- Cart Icon -->
+  <div class="cart-icon" onclick="toggleCart()">
+    🛒 Cart (<span id="cart-count">0</span>)
+  </div>
+
+  <!-- Cart Dropdown -->
+  <div id="cart-dropdown" class="cart-dropdown">
+    <div id="cart-items"></div>
+    <a href="payment.html" class="payment-btn">Proceed to Payment</a>
+  </div>
+</div>
+
+
+<main>
+  <section class="hero">
+    <h2>Our Products</h2>
+    <p>We offer clean, healthy, and affordable livestock for homes, events, and restaurants.</p>
+  </section>
+
+  <section class="search-section">
+    <div class="search-wrapper">
+      <span class="search-icon">🔍</span>
+      <input type="text" id="productSearch" placeholder="Search for a product..." onkeyup="filterProducts()" />
+    </div>
+  </section>
+
+  <section class="products-container">
+    <!-- Sample Products -->
+    <div class="product-card">
+      <img src="images/catfish.jpg" alt="Fresh Catfish" />
+      <h3>Fresh Catfish</h3>
+      <p>Live or processed catfish – grown in clean water tanks.</p>
+      <p><strong>₦2,700</strong> per 1 (Table Size)</p>
+      <button class="add-to-cart-btn" onclick="addToCart('Fresh Catfish', 2700)">Add to Cart</button>
+    </div>
+
+    <div class="product-card">
+      <img src="images/chicken.webp" alt="Healthy Chicken" />
+      <h3>Healthy Chicken</h3>
+      <p>Broilers raised naturally for soft, tasty meat.</p>
+      <p><strong>₦10,000</strong> 3 months old</p>
+      <button class="add-to-cart-btn" onclick="addToCart('Healthy Chicken', 10000)">Add to Cart</button>
+    </div>
+
+    <div class="product-card">
+      <img src="images/turkey.jpg" alt="Healthy Turkey" />
+      <h3>Healthy Turkey</h3>
+      <p>Turkey raised naturally for soft, tasty meat.</p>
+      <p><strong>₦50,000</strong> 8 Months</p>
+      <button class="add-to-cart-btn" onclick="addToCart('Healthy Turkey', 50000)">Add to Cart</button>
+    </div>
+
+    <div class="product-card">
+      <img src="images/guinea-fowl.jpg" alt="Healthy Guinea Fowl" />
+      <h3>Healthy Guinea Fowl</h3>
+      <p>Guinea fowl raised naturally for soft, tasty meat.</p>
+      <p><strong>₦25,000</strong> 5 months old</p>
+      <button class="add-to-cart-btn" onclick="addToCart('Healthy Guinea Fowl', 25000)">Add to Cart</button>
+    </div>
+
+    <div class="product-card">
+      <img src="images/grass-cutter.jpg" alt="Healthy Grass Cutter" />
+      <h3>Healthy Grass Cutter</h3>
+      <p>Grass cutter raised naturally for soft, tasty meat.</p>
+      <p><strong>₦20,000</strong> </p>
+      <button class="add-to-cart-btn" onclick="addToCart('Healthy Grass Cutter', 20000)">Add to Cart</button>
+    </div>
+
+    <div class="product-card">
+      <img src="images/rabbit.webp" alt="Healthy Rabbit" />
+      <h3>Healthy Rabbit</h3>
+      <p>Rabbit raised naturally for soft, tasty meat.</p>
+      <p><strong>₦12,000</strong> 4 months old</p>
+      <button class="add-to-cart-btn" onclick="addToCart('Healthy Rabbit', 12000)">Add to Cart</button>
+    </div>
+
+    <div class="product-card">
+      <img src="images/goat-1.jpg" alt="Healthy Goat" />
+      <h3>Healthy Goat</h3>
+      <p>Goat raised naturally for soft, tasty meat.</p>
+      <p><strong>₦60,000</strong> </p>
+      <button class="add-to-cart-btn" onclick="addToCart('Healthy Goat', 60000)">Add to Cart</button>
+    </div>
+
+    <div class="product-card">
+      <img src="images/pig.jpg" alt="Healthy Pig" />
+      <h3>Healthy Pig</h3>
+      <p>Pig raised naturally for soft, tasty meat.</p>
+      <p><strong>₦40,000</strong> </p>
+      <button class="add-to-cart-btn" onclick="addToCart('Healthy Pig', 40000)">Add to Cart</button>
+    </div>
+
+     <div class="product-card">
+      <img src="images/snails.webp" alt="Healthy Snails" />
+      <h3>Healthy Snails</h3>
+      <p>Snails raised naturally for soft, tasty meat.</p>
+      <p><strong>₦1,500</strong> per 1kg</p>
+      <button class="add-to-cart-btn" onclick="addToCart('Healthy Snails', 1500)">Add to Cart</button>
+    </div>
+
+     <div class="product-card">
+      <img src="images/goat-2.jpg" alt="Healthy Goat-1" />
+      <h3>Healthy Goat</h3>
+      <p>Goat raised naturally for soft, tasty meat.</p>
+      <p><strong>₦80,000</strong></p>
+      <button class="add-to-cart-btn" onclick="addToCart('Healthy Goat', 80000)">Add to Cart</button>
+    </div>
+
+     <div class="product-card">
+      <img src="images/snails-1.jpeg" alt="Healthy Snails" />
+      <h3>Healthy Snails</h3>
+      <p>Snails raised naturally for soft, tasty meat.</p>
+      <p><strong>₦1,500</strong> per 1kg</p>
+      <button class="add-to-cart-btn" onclick="addToCart('Healthy Snails', 1500)">Add to Cart</button>
+    </div>
+
+     <div class="product-card">
+      <img src="images/chicks-1.jpg" alt="Healthy chicks" />
+      <h3>Healthy Chicks</h3>
+      <p>A day old live chicken also available for sale</p>
+      <p><strong>₦2,000</strong> 1 Day Old</p>
+      <button class="add-to-cart-btn" onclick="addToCart('Healthy Chicks', 2000)">Add to Cart</button>
+    </div>
+
+    <div class="product-card">
+      <img src="images/chicks-2.webp" alt="Healthy Chicks" />
+      <h3>Healthy Chicken</h3>
+      <p>3 weeks old live chicken also available for sale</p>
+      <p><strong>₦4,000</strong> 3 weeks old </p>
+      <button class="add-to-cart-btn" onclick="addToCart('Healthy Chicks', 4000)">Add to Cart</button>
+    </div>
+
+    <div class="product-card">
+      <img src="images/smoked-catfish-1.webp" alt="Smoked Catfish" />
+      <h3>Smoked Catfish</h3>
+      <p>Well Smoked Catfish also available</p>
+      <p><strong>₦10,000</strong> per 1 kg</p>
+      <button class="add-to-cart-btn" onclick="addToCart('Smoked Catfish', 10000)">Add to Cart</button>
+    </div>
+
+    <div class="product-card">
+      <img src="images/goat-meat-1.jpeg" alt="Goat meat" />
+      <h3>Goat Meat</h3>
+      <p>Well Processed sweet Goat meat also available</p>
+      <p><strong>₦20,000</strong> </p>
+      <button class="add-to-cart-btn" onclick="addToCart('Goat meat', 20000)">Add to Cart</button>
+    </div>
+
+    <div class="product-card">
+      <img src="images/smoked-catfish-2.jpg" alt="Smoked Catfish" />
+      <h3>Smoked Catfish</h3>
+      <p>Well Smoked Catfish also available</p>
+      <p><strong>₦10,000</strong> per 1 kg</p>
+      <button class="add-to-cart-btn" onclick="addToCart('Smoked Catfish', 10000)">Add to Cart</button>
+    </div>
+
+    <div class="product-card">
+      <img src="images/goat-meat-2.jpg" alt="Goat meat" />
+      <h3>Goat Meat</h3>
+      <p>Well Processed sweet Goat meat also available</p>
+      <p><strong>₦20,000</strong> </p>
+      <button class="add-to-cart-btn" onclick="addToCart('Goat meat', 20000)">Add to Cart</button>
+    </div>
+
+    <div class="product-card">
+      <img src="images/cow-1.jpg" alt="COW" />
+      <h3>Healthy Cow</h3>
+      <p>We also have Healthy live cow, which is good for festive period.</p>
+      <p><strong>₦800,000</strong> </p>
+      <button class="add-to-cart-btn" onclick="addToCart('COW', 800000)">Add to Cart</button>
+    </div>
+
+    <div class="product-card">
+      <img src="images/ram-1.webp" alt="Healthy Ram" />
+      <h3>Healthy Ram</h3>
+      <p>We also have Healthy live ram, which is good for festive period.</p>
+      <p><strong>₦150,000</strong> </p>
+      <button class="add-to-cart-btn" onclick="addToCart('Healthy Ram', 150000)">Add to Cart</button>
+    </div>
+    
+
+    <div class="product-card">
+      <img src="images/cow-2.webp" alt="Healthy Cow" />
+      <h3>Healthy Cow</h3>
+      <p>We also have Healthy live cow, which is good for festive period.</p>
+      <p><strong>₦750,000</strong> </p>
+      <button class="add-to-cart-btn" onclick="addToCart('Healthy Cow', 750000)">Add to Cart</button>
+    </div>
+
+    <div class="product-card">
+      <img src="images/dog-1.jpeg" alt="Local Dog" />
+      <h3>Local Dogs</h3>
+      <p>We also have natives Dogs available for sale</p>
+      <p><strong>₦30,000</strong> </p>
+      <button class="add-to-cart-btn" onclick="addToCart('Local Dog', 30000)">Add to Cart</button>
+    </div>
+
+    <div class="product-card">
+      <img src="images/dog-2.webp" alt="Eskimo" />
+      <h3>Pet Dog(Eskimo)</h3>
+      <p>We have different breeds of Eskimo dogs available for sale</p>
+      <p><strong>₦80,000</strong> </p>
+      <button class="add-to-cart-btn" onclick="addToCart('Eskimo', 80000)">Add to Cart</button>
+    </div>
+
+    <div class="product-card">
+      <img src="images/dog-6.jpg" alt="German Shepherd" />
+      <h3>German Shepherd</h3>
+      <p>We also have German Shepherds Dogs which serves as security dogs for your house.</p>
+      <p><strong>₦100,000</strong> </p>
+      <button class="add-to-cart-btn" onclick="addToCart('German Shepherd', 100000)">Add to Cart</button>
+    </div>
+
+    <div class="product-card">
+      <img src="images/dog-5.jpg" alt="Caucasian Shepherd Dog" />
+      <h3>Caucasian Shepherd Dog</h3>
+      <p>Caucasian Shepherd Dog which can also serve as pet and same time for security purposes.</p>
+      <p><strong>₦200,000</strong> </p>
+      <button class="add-to-cart-btn" onclick="addToCart('Caucasian Shepherd Dog', 200000)">Add to Cart</button>
+    </div>
+
+    <div class="product-card">
+      <img src="images/dog-4.jpg" alt="Boerboel Dog" />
+      <h3>Boerboel Dog</h3>
+      <p>Boerboel Dogs are also available in all kinds of breed. Healthy, strong and effective.</p>
+      <p><strong>₦170,000</strong> </p>
+      <button class="add-to-cart-btn" onclick="addToCart('Boerboel Dog', 170000)">Add to Cart</button>
+    </div>
+  </section>
+</main>
+
+<section class="products-container" id="productsContainer"></section>
+
+<script>
+  fetch('/products-data')
+  .then(res => res.json())
+  .then(products => {
+    const container = document.getElementById('productsContainer');
+    container.innerHTML = products.map(p => `
+      <div class="product-card">
+        <img src="${p.image}" alt="${p.name}" />
+        <h3>${p.name}</h3>
+        <p>${p.description}</p>
+        <p><strong>₦${Number(p.price).toLocaleString()}</strong></p>
+        <button class="add-to-cart-btn btn btn-primary">Add to Cart</button>
+      </div>
+    `).join('');
+
+    // Add event listeners after rendering
+    document.querySelectorAll('.add-to-cart-btn').forEach((btn, index) => {
+      const productName = products[index].name;
+      btn.addEventListener('click', () => addToCart(productName));
+    });
+  });
+
+</script>
+
+
+
+<footer>
+  <p>&copy; 2025 Poultry Farming Web</p>
+</footer>
+
+<script>
+    let cart = [];
+
+   
+
+    // Fetch products from server
+    fetch('/products-data')
+      .then(res => res.json())
+      .then(products => {
+        const container = document.getElementById('productsContainer');
+        container.innerHTML = products.map((p, i) => `
+          <div class="product-card">
+            <img src="${p.image}" alt="${p.name}" />
+            <h3>${p.name}</h3>
+            <p>${p.description}</p>
+            <p><strong>₦${parseInt(p.price).toLocaleString()}</strong></p>
+            <button onclick="addToCart('${p.name}', ${parseInt(p.price)})">Add to Cart</button>
+          </div>
+        `).join('');
+      });
+
+    function addToCart(name, price) {
+      const existing = cart.find(item => item.name === name);
+      if (existing) {
+        existing.quantity++;
+      } else {
+        cart.push({ name, price, quantity: 1 });
+      }
+      updateCartDisplay();
+    }
+
+    function removeFromCart(index) {
+      cart.splice(index, 1);
+      updateCartDisplay();
+    }
+
+    function changeQuantity(index, delta) {
+      cart[index].quantity += delta;
+      if (cart[index].quantity <= 0) {
+        cart.splice(index, 1);
+      }
+      updateCartDisplay();
+    }
+
+    function updateCartDisplay() {
+      const cartCount = document.getElementById("cart-count");
+      const cartItems = document.getElementById("cart-items");
+
+      cartCount.textContent = cart.reduce((sum, item) => sum + item.quantity, 0);
+      cartItems.innerHTML = "";
+
+      if (cart.length === 0) {
+        cartItems.innerHTML = "<p>Your cart is empty 🛒</p>";
+        return;
+      }
+
+      let totalAmount = 0;
+
+      cart.forEach((item, index) => {
+        const price = item.price * item.quantity;
+        totalAmount += price;
+
+        const div = document.createElement("div");
+        div.className = "cart-item";
+        div.innerHTML = `
+          <span>${item.name} × ${item.quantity} = ₦${price.toLocaleString()}</span>
+          <div>
+            <button onclick="changeQuantity(${index}, 1)">+</button>
+            <button onclick="changeQuantity(${index}, -1)">-</button>
+            <button onclick="removeFromCart(${index})">Remove</button>
+          </div>
+        `;
+        cartItems.appendChild(div);
+      });
+
+      const summary = document.createElement("div");
+      summary.innerHTML = `
+        <p><strong>Total Items:</strong> ${cart.reduce((sum, item) => sum + item.quantity, 0)}</p>
+        <p><strong>Total Amount:</strong> ₦${totalAmount.toLocaleString()}</p>
+      `;
+      cartItems.appendChild(summary);
+    }
+
+    function toggleCart() {
+      document.getElementById("cart-dropdown").classList.toggle("show");
+    }
+
+    
+  </script>
+
+<script>
+  const menuToggle = document.getElementById("menu-toggle");
+  const navLinks = document.getElementById("nav-links");
+
+  menuToggle.addEventListener("click", () => {
+    navLinks.classList.toggle("active");
+  });
+</script>
+
+
+
+</body>
+</html>

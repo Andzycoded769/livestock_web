@@ -1,0 +1,125 @@
+<!-- contact.html -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>🐔 Contact </title>
+  <link rel="icon" type="image/jpeg" href="images/chicken-icon-1.png" />
+  <link rel="stylesheet" href="style.css" />
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet" />
+
+  <!-- Font Awesome -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+</head>
+<body>
+  <header>
+  <div class="navbar">
+    <h1 class="logo">🐔 J.N LIVESTOCK FARMING LTD.</h1>
+
+    <!-- Hamburger button -->
+    <div class="menu-toggle" id="menu-toggle">
+      <i class="fas fa-bars"></i>
+    </div>
+
+    <!-- Nav Links -->
+    <nav id="nav-links">
+      <a href="index.html">Home</a>
+      <a href="about.html">About</a>
+      <a href="products.html">Products</a>
+      <a href="contact.html">Contact</a>
+    </nav>
+  </div>
+</header>
+
+
+  <main>
+    <section class="hero">
+      <h2>Contact Us</h2>
+      <p>Reach out to place orders, ask questions, or schedule a farm visit.</p>
+    </section>
+
+    <section class="contact-details">
+      <h3>📞 Phone</h3>
+      <p><a href="tel:+2348123456789">+234 812 345 6789</a></p>
+
+      <h3>💬 WhatsApp</h3>
+      <p>
+        <a href="https://wa.me/2348123456789" target="_blank">
+          Chat with us on WhatsApp
+        </a>
+      </p>
+
+      <h3>📍 Address</h3>
+      <p>25, BT Street, Shagari Estate, Off Pako Road,Ipaja,Alimosho,Lagos State,Nigeria.</p>
+    </section>
+  </main>
+  
+ <!-- contact.html -->
+...
+<section class="contact-details">
+  <!-- ...existing phone, WhatsApp, address... -->
+
+  <h3>📧 Send Us a Message via your email.</h3>
+  <form id="contactForm" action="http://localhost:5000/send-message" method="POST" class="contact-form">
+    <label for="name">Your Name</label>
+    <input type="text" id="name" name="name" required />
+    <label for="email">Your Email</label>
+    <input type="email" id="email" name="email" required />
+
+    <label for="message">Your Message</label>
+    <textarea id="message" name="message" rows="5" required></textarea>
+
+    <button type="submit">Send Message</button>
+  </form>
+</section>
+...
+
+  <footer>
+    <p>&copy; 2025 Poultry Farming Web</p>
+  </footer>
+
+   <script>
+  document.addEventListener('DOMContentLoaded', function () {
+    const contactForm = document.getElementById('contactForm');
+
+    contactForm.addEventListener('submit', async function (e) {
+      e.preventDefault();
+
+      const name = document.getElementById('name').value;
+      const email = document.getElementById('email').value;
+      const message = document.getElementById('message').value;
+
+      try {
+        const response = await fetch('http://localhost:5000/send-message', {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json'
+          },
+          body: JSON.stringify({ name, email, message })
+        });
+
+        const result = await response.json();
+        alert(result.message || 'Message sent successfully!');
+        contactForm.reset();
+      } catch (error) {
+        alert('Failed to send message.');
+        console.error(error);
+      }
+    });
+  });
+</script>
+  <script>
+  const menuToggle = document.getElementById("menu-toggle");
+  const navLinks = document.getElementById("nav-links");
+
+  menuToggle.addEventListener("click", () => {
+    navLinks.classList.toggle("active");
+  });
+</script>
+
+
+</body>
+</html>
+
+

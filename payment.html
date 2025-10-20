@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Payment</title>
+  <link rel="stylesheet" href="payment.css">
+  <link rel="icon" type="image/jpeg" href="images/chicken-icon-1.png" />
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
+</head>
+<body>
+  <div class="overlay">
+    <div class="payment-container">
+      <h1>Complete Your Payment</h1>
+
+      <div class="account-details">
+        <p><strong>Bank:</strong> Access Bank</p>
+        <p><strong>Account Name:</strong> Andrew Poultry Farm</p>
+        <p><strong>Account Number:</strong> <span class="acc-no">1234567890</span></p>
+      </div>
+
+      <form class="card-form" onsubmit="submitPayment(event)">
+        <h2>Card Payment</h2>
+        <input type="text" placeholder="Card Holder Name" required>
+        <input type="text" placeholder="Card Number" maxlength="16" required>
+        <div class="card-row">
+          <input type="text" placeholder="MM/YY" maxlength="5" required>
+          <input type="text" placeholder="CVV" maxlength="3" required>
+        </div>
+        <button type="submit">Pay Now</button>
+      </form>
+    </div>
+  </div>
+
+  <script>
+    function submitPayment(e) {
+      e.preventDefault();
+      alert("Payment processed successfully! 🐔");
+      window.location.href = "products.html";
+    }
+  </script>
+</body>
+</html>

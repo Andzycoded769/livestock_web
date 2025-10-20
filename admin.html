@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Admin Dashboard</title>
+  <link rel="icon" type="image/jpeg" href="images/chicken-icon-1.png" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link href="https://fonts.googleapis.com/css2?family=Segoe+UI:wght@400;600&display=swap" rel="stylesheet" />
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: 'Segoe UI', sans-serif;
+    }
+
+    body {
+      background: linear-gradient(to right, #1d2b64, #f8cdda);
+      min-height: 100vh;
+      padding: 2rem;
+      color: #333;
+    }
+
+    .container {
+      max-width: 900px;
+      margin: 5rem auto 2rem auto;
+      background: #fff;
+      padding: 2rem;
+      border-radius: 16px;
+      box-shadow: 0 0 15px rgba(0,0,0,0.1);
+    }
+
+    h1 {
+      text-align: center;
+      margin-bottom: 2rem;
+      color: #1d2b64;
+    }
+
+    .message-card {
+      background-color: #f4f4f4;
+      border-left: 4px solid #1d2b64;
+      padding: 1rem;
+      margin-bottom: 1.2rem;
+      border-radius: 8px;
+      transition: background 0.3s ease;
+    }
+
+    .message-card:hover {
+      background-color: #eaeaea;
+    }
+
+    .message-card h3 {
+      margin-bottom: 0.3rem;
+      font-size: 1.1rem;
+      color: #1d2b64;
+    }
+
+    .message-card p {
+      margin: 0.2rem 0;
+      font-size: 0.95rem;
+    }
+
+    .logout-btn {
+      position: fixed;
+      top: 20px;
+      right: 20px;
+      z-index: 1000;
+      padding: 0.6rem 1.2rem;
+      background-color: #1d2b64;
+      color: #fff;
+      border: none;
+      border-radius: 10px;
+      font-size: 0.95rem;
+      cursor: pointer;
+      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
+      transition: background 0.3s ease;
+    }
+
+    .logout-btn:hover {
+      background-color: #16214a;
+    }
+
+    @media (max-width: 600px) {
+      .container {
+        padding: 1.2rem;
+      }
+
+      .logout-btn {
+        font-size: 0.85rem;
+        padding: 0.5rem 1rem;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <button class="logout-btn" onclick="logout()">Logout</button>
+
+  <div class="container">
+    <h1>Admin Dashboard</h1>
+    <div id="messages"></div>
+  </div>
+
+  <!-- Inside <body>, where messages are displayed -->
+<div id="messagesContainer">Loading messages...</div>
+
+<script>
+  function logout() {
+    window.location.href = 'admin-login.html';
+  }
+
+  async function fetchMessages() {
+    try {
+      const response = await fetch('/messages');
+      const result = await response.json();
+
+      const container = document.getElementById('messagesContainer');
+      container.innerHTML = '';
+
+      if (result.success && result.messages.length > 0) {
+        result.messages.forEach((msg, index) => {
+          const card = document.createElement('div');
+          card.className = 'message-card';
+          card.innerHTML = `
+            <p><strong>Name:</strong> ${msg.name}</p>
+            <p><strong>Email:</strong> ${msg.email}</p>
+            <p><strong>Message:</strong> ${msg.message}</p>
+            <button onclick="deleteMessage(${index})" style="margin-top: 10px; background-color: red; color: white; padding: 6px 10px; border: none; border-radius: 6px;">Delete</button>
+          `;
+          container.appendChild(card);
+        });
+      } else {
+        container.innerHTML = '<p>No messages available.</p>';
+      }
+    } catch (error) {
+      document.getElementById('messagesContainer').innerHTML = '<p>Error loading messages.</p>';
+    }
+  }
+
+  async function deleteMessage(index) {
+    if (!confirm("Are you sure you want to delete this message?")) return;
+
+    try {
+      const response = await fetch(`/delete-message/${index}`, {
+        method: 'DELETE'
+      });
+      const result = await response.json();
+      if (result.success) {
+        fetchMessages(); // reload messages
+      } else {
+        alert('Failed to delete message.');
+      }
+    } catch (err) {
+      alert('Error deleting message.');
+    }
+  }
+
+  fetchMessages();
+</script>
+
+</body>
+</html>
